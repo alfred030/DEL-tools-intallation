@@ -1,4 +1,4 @@
-Install SonarQube on Ubuntu 18.04
+Install SonarQube on Ubuntu 
 
 Before installing any packages on the Ubuntu server instance, it is recommended to update the system. Log in using the sudo user and run the following commands to update the system.
 
@@ -269,3 +269,72 @@ Step 6 — Setting Up SonarQube
 
 `To set up your installation navigate to your server's domain name or public IP address: http://server_domain_name_or_IP.`
 
+
+
+
+################################ Install using Docker.
+
+``` 
+sudo nano docker-compose.yml
+
+version: "3"
+
+services:
+
+  SonarQube:
+
+    image: SonarQube:community
+
+    depends_on:
+
+      - db
+
+    environment:
+
+      SONAR_JDBC_URL: jdbc:postgresql://db:5432/sonar
+
+      SONAR_JDBC_USERNAME: sonartest
+
+      SONAR_JDBC_PASSWORD: sonartest
+
+    volumes:
+
+      - SonarQube_data:/opt/SonarQube/data
+
+      - SonarQube_extensions:/opt/SonarQube/extensions
+
+      - SonarQube_logs:/opt/SonarQube/logs
+
+    ports:
+
+      - "9000:9000"
+
+  db:
+
+    image: postgres:12
+
+    environment:
+
+      POSTGRES_USER: sonartest
+
+      POSTGRES_PASSWORD: sonartesrt
+
+    volumes:
+
+      - postgresql:/var/lib/postgresql
+
+      - postgresql_data:/var/lib/postgresql/data
+
+volumes:
+
+  SonarQube_data:
+
+  SonarQube_extensions:
+
+  SonarQube_logs:
+
+  postgresql:
+
+  postgresql_data:
+
+```
