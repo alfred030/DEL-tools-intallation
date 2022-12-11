@@ -1,6 +1,6 @@
-Install SonarQube on Ubuntu 
+## Install SonarQube on Ubuntu 
 
-Before installing any packages on the Ubuntu server instance, it is recommended to update the system. Log in using the sudo user and run the following commands to update the system.
+## Before installing any packages on the Ubuntu server instance, it is recommended to update the system. Log in using the sudo user and run the following commands to update the system.
 
 ```
 sudo apt-get update
@@ -8,9 +8,9 @@ sudo apt-get -y upgrade
 
 ```
 
-Step 2- Install and configure PostgreSQL
+## Step 2- Install and configure PostgreSQL
 
-Install the PostgreSQL repository.
+## Install the PostgreSQL repository.
 
 ```
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
@@ -18,14 +18,14 @@ wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key a
 
 ```
 
-Install the PostgreSQL database server by running:
+## Install the PostgreSQL database server by running:
 
 ```
 sudo apt-get -y install postgresql postgresql-contrib
 
 ```
 
-Start PostgreSQL server and enable it to start automatically at boot time by running:
+## Start PostgreSQL server and enable it to start automatically at boot time by running:
 
 ```
 sudo systemctl start postgresql
@@ -33,48 +33,48 @@ sudo systemctl enable postgresql
 
 ```
 
-Change the password for the default PostgreSQL user.
+## Change the password for the default PostgreSQL user.
 
 ```
 sudo passwd postgres
 
 ```
 
-Switch to the postgres user.
+## Switch to the postgres user.
 ```
 su - postgres
 
 ``` 
 
-Create a new user by typing:
+## Create a new user by typing:
 
 ```
 createuser sonar
 
 ```
 
-Switch to the PostgreSQL shell.
+## Switch to the PostgreSQL shell.
 
 ```
 psql
 
 ```
 
-Set a password for the newly created user for SonarQube database.
+## Set a password for the newly created user for SonarQube database.
 
 ```
 ALTER USER sonar WITH ENCRYPTED password 'P@ssword';
 
 ```
 
-Create a new database for PostgreSQL database by running:
+## Create a new database for PostgreSQL database by running:
 
 ```
 CREATE DATABASE sonar OWNER sonar;
 
 ```
 
-Exit from the psql shell:
+## Exit from the psql shell:
 
 ```
 \q
