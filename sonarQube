@@ -267,5 +267,5 @@ sudo service nginx restart
 
 Step 6 — Setting Up SonarQube
 
-To set up your installation navigate to your server's domain name or public IP address: http://server_domain_name_or_IP.
+`To set up your installation navigate to your server's domain name or public IP address: http://server_domain_name_or_IP.`
 
